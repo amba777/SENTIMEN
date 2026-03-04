@@ -265,7 +265,7 @@ bdge = {'Positif':'<span class="bdg pos">😊 POSITIF</span>',
 # ═══════════════════════════════════════════
 st.markdown(f"""
 <div class="hero">
-  <div class="hero-tag">📊 Skripsi · STMIK Triguna Dharma · 2025</div>
+  <div class="hero-tag">📊 Skripsi · STMIK Triguna Dharma · 2026</div>
   <h1 class="hero-title">Sentimen Masyarakat<br>terhadap <em>Coretax</em> di Platform X</h1>
   <p class="hero-desc">
     Analisis persepsi publik terhadap sistem perpajakan digital Coretax
@@ -732,7 +732,7 @@ with t5:
             ("Peneliti","Aziz Fakhrizi","gold"),
             ("NIM","2022020255",""),
             ("Institusi","STMIK Triguna Dharma, Medan",""),
-            ("Tahun","2025",""),
+            ("Tahun","2026",""),
             ("Sumber Data","Platform X (Twitter)",""),
             ("Jumlah Data",f"{TOTAL:,} tweet","teal"),
             ("Periode","15 Des 2024 – 27 Jan 2025",""),
@@ -788,7 +788,7 @@ with t5:
 # ═══════════════════════════════════════════
 st.markdown(f"""
 <div class="foot">
-  <b>Dashboard Sentimen Coretax</b> — Skripsi STMIK Triguna Dharma Medan 2025<br>
+  <b>Dashboard Sentimen Coretax</b> — Skripsi STMIK Triguna Dharma Medan 2026<br>
   Peneliti: <b>Aziz Fakhrizi</b> (2022020255) · {TOTAL:,} tweet ·
   Categorical Naïve Bayes · InSet Lexicon<br>
   Akurasi: <b>{AKU}%</b> · CV 5-Fold: <b>{CV_M:.2f}% ± {CV_S:.2f}%</b> ·
