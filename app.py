@@ -16,7 +16,7 @@ st.set_page_config(
 )
 
 # ══════════════════════════════════════════════════════
-# CSS
+# CSS MODERN & DINAMIS
 # ══════════════════════════════════════════════════════
 st.markdown("""
 <style>
@@ -27,6 +27,10 @@ st.markdown("""
   --gold:  #F0B429; --teal: #2DD4BF; --green: #22C55E;
   --red:   #EF4444; --slate: #64748B; --muted: #94A3B8; --text: #E2E8F0;
   --border: rgba(255,255,255,0.07);
+  --grad-gold: linear-gradient(135deg, #F0B429, #E8A020);
+  --grad-teal: linear-gradient(135deg, #2DD4BF, #14B8A6);
+  --grad-red: linear-gradient(135deg, #EF4444, #DC2626);
+  --grad-green: linear-gradient(135deg, #22C55E, #16A34A);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html,body,.stApp,[data-testid="stAppViewContainer"],[data-testid="stMain"]{
@@ -36,7 +40,7 @@ html,body,.stApp,[data-testid="stAppViewContainer"],[data-testid="stMain"]{
 #MainMenu,footer,header,[data-testid="stToolbar"],[data-testid="stDecoration"],[data-testid="collapsedControl"]{display:none!important;}
 .block-container{padding:0!important;max-width:100%!important;}
 
-/* HERO */
+/* HERO MODERN */
 .hero{background:linear-gradient(150deg,#0D1A30 0%,#090F1E 55%,#060B18 100%);
   padding:clamp(1.8rem,5vw,3.2rem) clamp(1.2rem,5vw,3.5rem) clamp(1.4rem,4vw,2.4rem);
   border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
@@ -44,63 +48,98 @@ html,body,.stApp,[data-testid="stAppViewContainer"],[data-testid="stMain"]{
   background:radial-gradient(ellipse 55% 65% at 85% 15%,rgba(240,180,41,.07) 0%,transparent 70%),
              radial-gradient(ellipse 40% 55% at 5% 85%,rgba(45,212,191,.05) 0%,transparent 70%);
   pointer-events:none;}
+.hero::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:radial-gradient(circle,rgba(240,180,41,.03) 0%,transparent 70%);
+  animation:pulse 8s ease infinite;pointer-events:none;}
+@keyframes pulse{0%{opacity:0.3}50%{opacity:0.6}100%{opacity:0.3}}
 .hero-tag{display:inline-flex;align-items:center;gap:.4rem;
   background:rgba(240,180,41,.1);border:1px solid rgba(240,180,41,.22);color:var(--gold);
   padding:.22rem .75rem;border-radius:99px;font-size:.68rem;font-weight:700;
-  letter-spacing:.08em;text-transform:uppercase;margin-bottom:.85rem;}
-.hero-title{font-size:clamp(1.7rem,4.5vw,3rem);font-weight:800;line-height:1.15;color:#fff;margin-bottom:.55rem;}
-.hero-title em{color:var(--gold);font-style:normal;}
+  letter-spacing:.08em;text-transform:uppercase;margin-bottom:.85rem;
+  backdrop-filter:blur(4px);}
+.hero-title{font-size:clamp(1.7rem,4.5vw,3rem);font-weight:800;line-height:1.15;color:#fff;margin-bottom:.55rem;
+  background:linear-gradient(135deg,#fff 0%,#94A3B8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;}
+.hero-title em{color:var(--gold);-webkit-text-fill-color:var(--gold);font-style:normal;}
 .hero-desc{font-size:clamp(.82rem,2vw,.97rem);color:var(--muted);line-height:1.72;max-width:660px;margin-bottom:1.1rem;}
 .hero-pills{display:flex;flex-wrap:wrap;gap:.45rem;}
 .hero-pill{background:rgba(255,255,255,.04);border:1px solid var(--border);
-  color:var(--muted);padding:.22rem .72rem;border-radius:99px;font-size:.71rem;}
+  color:var(--muted);padding:.22rem .72rem;border-radius:99px;font-size:.71rem;
+  transition:all .2s ease;}
+.hero-pill:hover{background:rgba(240,180,41,.1);border-color:rgba(240,180,41,.3);color:var(--gold);}
 .hero-pill b{color:var(--teal);}
 
-/* METRIC STRIP */
+/* METRIC STRIP MODERN */
 .mstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
   background:var(--border);border-bottom:1px solid var(--border);}
 @media(max-width:600px){.mstrip{grid-template-columns:repeat(2,1fr);}}
-.mtile{background:var(--bg1);padding:clamp(.85rem,3vw,1.35rem) clamp(.9rem,3vw,1.6rem);position:relative;}
+.mtile{background:var(--bg1);padding:clamp(.85rem,3vw,1.35rem) clamp(.9rem,3vw,1.6rem);position:relative;
+  transition:all .25s ease;cursor:pointer;}
+.mtile:hover{background:var(--bg2);transform:translateY(-2px);}
 .mtile::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
-.mt0::before{background:linear-gradient(90deg,var(--teal),var(--gold));}
-.mt1::before{background:var(--red);}
-.mt2::before{background:var(--green);}
-.mt3::before{background:var(--slate);}
+.mt0::before{background:var(--grad-teal);}
+.mt1::before{background:var(--grad-red);}
+.mt2::before{background:var(--grad-green);}
+.mt3::before{background:linear-gradient(135deg,#64748B,#475569);}
 .mlabel{font-size:.63rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-bottom:.32rem;}
 .mval{font-family:'JetBrains Mono',monospace;font-size:clamp(1.45rem,3.5vw,2.1rem);font-weight:600;color:#fff;line-height:1;margin-bottom:.18rem;}
 .msub{font-size:.7rem;color:var(--slate);}
 .mico{position:absolute;top:.95rem;right:1rem;font-size:1.1rem;opacity:.14;}
 
-/* TABS */
+/* TABS MODERN */
 .stTabs{padding:0 clamp(1rem,5vw,3.5rem)!important;}
 .stTabs [data-baseweb="tab-list"]{background:transparent!important;
   border-bottom:1px solid var(--border)!important;gap:0!important;padding:0!important;flex-wrap:wrap!important;}
 .stTabs [data-baseweb="tab"]{background:transparent!important;color:var(--slate)!important;
   border-bottom:2px solid transparent!important;border-radius:0!important;
-  font-size:.8rem!important;font-weight:500!important;padding:.7rem 1.1rem!important;margin:0!important;}
-.stTabs [data-baseweb="tab"]:hover{color:var(--text)!important;}
+  font-size:.8rem!important;font-weight:500!important;padding:.7rem 1.1rem!important;margin:0!important;
+  transition:all .2s ease;}
+.stTabs [data-baseweb="tab"]:hover{color:var(--gold)!important;}
 .stTabs [aria-selected="true"]{color:var(--gold)!important;border-bottom-color:var(--gold)!important;
   background:transparent!important;font-weight:700!important;}
 .stTabs [data-baseweb="tab-panel"]{padding:clamp(1rem,3vw,2rem) 0 0!important;}
 
-/* CARD */
-.card{background:var(--bg1);border:1px solid var(--border);border-radius:14px;padding:clamp(1rem,3vw,1.5rem);}
+/* CARD MODERN */
+.card{background:var(--bg1);border:1px solid var(--border);border-radius:14px;padding:clamp(1rem,3vw,1.5rem);
+  transition:all .3s ease;position:relative;overflow:hidden;}
+.card:hover{border-color:rgba(240,180,41,.3);box-shadow:0 4px 20px rgba(0,0,0,.2);}
+.card::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  transition:left .5s ease;pointer-events:none;}
+.card:hover::before{left:100%;}
 .ctitle{font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:.15rem;}
 .csub{font-size:.7rem;color:var(--slate);margin-bottom:.85rem;}
-.cline{width:26px;height:2px;background:var(--gold);border-radius:1px;margin:.35rem 0 .8rem;}
+.cline{width:26px;height:2px;background:var(--grad-gold);border-radius:2px;margin:.35rem 0 .8rem;
+  transition:width .3s ease;}
+.card:hover .cline{width:40px;}
 
 /* STAT ROW */
 .srow{display:flex;justify-content:space-between;align-items:flex-start;
-  padding:.52rem 0;border-bottom:1px solid var(--border);font-size:.79rem;}
+  padding:.52rem 0;border-bottom:1px solid var(--border);font-size:.79rem;
+  transition:background .2s ease;}
+.srow:hover{background:rgba(255,255,255,.02);}
 .srow:last-child{border-bottom:none;}
 .sk{color:var(--muted);flex-shrink:0;padding-right:.5rem;}
 .sv{color:var(--text);font-weight:500;font-family:'JetBrains Mono',monospace;text-align:right;}
 .sv.gold{color:var(--gold);}.sv.teal{color:var(--teal);}.sv.green{color:var(--green);}
 .sv.red{color:var(--red);}.sv.blue{color:#60A5FA;}
 
+/* SPLIT DATA CARD KHUSUS */
+.split-card{background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 100%);border:1px solid var(--border);border-radius:14px;padding:clamp(1rem,3vw,1.5rem);
+  transition:all .3s ease;}
+.split-card:hover{border-color:rgba(45,212,191,.3);}
+.split-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem;}
+.split-badge{background:rgba(45,212,191,.12);color:var(--teal);padding:.2rem .7rem;border-radius:99px;font-size:.65rem;font-weight:600;}
+.split-number{font-family:'JetBrains Mono',monospace;font-size:1.8rem;font-weight:700;color:var(--gold);}
+.split-label{font-size:.7rem;color:var(--slate);}
+.split-progress{background:rgba(255,255,255,.05);border-radius:99px;height:6px;overflow:hidden;margin:.5rem 0;}
+.split-progress-fill{height:100%;border-radius:99px;transition:width .5s ease;}
+
 /* TWEET */
 .tw{background:var(--bg2);border:1px solid var(--border);border-left:3px solid;
-  border-radius:10px;padding:.85rem 1rem;margin-bottom:.6rem;}
+  border-radius:10px;padding:.85rem 1rem;margin-bottom:.6rem;
+  transition:all .2s ease;}
+.tw:hover{transform:translateX(4px);border-color:rgba(240,180,41,.3);}
 .tw.neg{border-left-color:var(--red);}.tw.pos{border-left-color:var(--green);}.tw.net{border-left-color:var(--slate);}
 .two{font-size:.8rem;color:var(--text);line-height:1.62;margin-bottom:.32rem;}
 .twc{font-size:.7rem;color:var(--muted);font-family:'JetBrains Mono',monospace;
@@ -112,7 +151,9 @@ html,body,.stApp,[data-testid="stAppViewContainer"],[data-testid="stMain"]{
 .bdg.net{background:rgba(100,116,139,.13);color:#CBD5E1;}
 
 /* INSIGHT */
-.ins{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1rem 1.1rem;}
+.ins{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1rem 1.1rem;
+  transition:all .2s ease;cursor:pointer;}
+.ins:hover{background:var(--bg3);transform:translateY(-3px);}
 .ins-val{font-family:'JetBrains Mono',monospace;font-size:1.75rem;font-weight:600;color:var(--gold);line-height:1.2;}
 .ins-lbl{font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--slate);margin-bottom:.22rem;}
 .ins-desc{font-size:.74rem;color:var(--muted);line-height:1.55;margin-top:.28rem;}
@@ -120,19 +161,27 @@ html,body,.stApp,[data-testid="stAppViewContainer"],[data-testid="stMain"]{
 /* FOLD GRID */
 .fgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:.45rem;margin-top:.7rem;}
 @media(max-width:580px){.fgrid{grid-template-columns:repeat(3,1fr);}}
-.fpill{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:.48rem .35rem;text-align:center;}
+.fpill{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:.48rem .35rem;text-align:center;
+  transition:all .2s ease;}
+.fpill:hover{transform:translateY(-2px);border-color:rgba(45,212,191,.3);}
 .fname{font-size:.6rem;color:var(--slate);margin-bottom:.18rem;}
 .fval{font-family:'JetBrains Mono',monospace;font-size:.86rem;font-weight:600;color:var(--teal);}
 
 /* CM BOX */
-.cmbox{padding:.7rem .9rem;border-radius:9px;text-align:center;}
+.cmbox{padding:.7rem .9rem;border-radius:9px;text-align:center;
+  transition:all .2s ease;}
+.cmbox:hover{transform:scale(1.02);}
 .cmlbl{font-size:.68rem;color:var(--muted);margin-bottom:.25rem;}
 .cmval{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:700;color:#fff;}
 
 /* STEP */
-.step{display:flex;gap:.6rem;align-items:flex-start;margin-bottom:.65rem;}
+.step{display:flex;gap:.6rem;align-items:flex-start;margin-bottom:.65rem;
+  transition:all .2s ease;}
+.step:hover{transform:translateX(4px);}
 .sdot{width:22px;height:22px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;
-  justify-content:center;font-size:.6rem;font-weight:800;color:#060B18;margin-top:1px;}
+  justify-content:center;font-size:.6rem;font-weight:800;color:#060B18;margin-top:1px;
+  transition:transform .2s ease;}
+.step:hover .sdot{transform:scale(1.1);}
 .sname{font-size:.8rem;font-weight:600;color:var(--text);}
 .sdesc{font-size:.68rem;color:var(--slate);margin-top:.08rem;}
 
@@ -144,7 +193,7 @@ html,body,.stApp,[data-testid="stAppViewContainer"],[data-testid="stMain"]{
   padding:1.1rem clamp(1rem,5vw,3.5rem);text-align:center;font-size:.69rem;color:var(--slate);line-height:1.8;}
 .foot b{color:var(--gold);}
 
-/* ── PROBABILITY BARS (DIPERBAIKI) ─────────────────── */
+/* ── PROBABILITY BARS ─────────────────── */
 .prob-head {
     display: flex;
     justify-content: space-between;
@@ -173,18 +222,23 @@ html,body,.stApp,[data-testid="stAppViewContainer"],[data-testid="stMain"]{
 .prob-fill {
     height: 100%;
     border-radius: 99px;
+    transition: width .3s ease;
 }
 
 /* ── TOKEN TAGS ─────────────────── */
 .token-wrap{display:flex;flex-wrap:wrap;gap:.32rem;margin:.6rem 0;}
-.tok{padding:.15rem .52rem;border-radius:6px;font-size:.68rem;font-family:'JetBrains Mono',monospace;}
+.tok{padding:.15rem .52rem;border-radius:6px;font-size:.68rem;font-family:'JetBrains Mono',monospace;
+  transition:all .2s ease;}
+.tok:hover{transform:scale(1.05);}
 .tok.p{background:rgba(34,197,94,.12);color:#86EFAC;border:1px solid rgba(34,197,94,.18);}
 .tok.n{background:rgba(239,68,68,.12);color:#FCA5A5;border:1px solid rgba(239,68,68,.18);}
 .tok.z{background:rgba(100,116,139,.1);color:#CBD5E1;border:1px solid rgba(100,116,139,.15);}
 
 .hist-item{background:var(--bg2);border:1px solid var(--border);border-left:3px solid;
   border-radius:9px;padding:.7rem .9rem;margin-bottom:.45rem;
-  display:flex;justify-content:space-between;align-items:center;gap:.8rem;}
+  display:flex;justify-content:space-between;align-items:center;gap:.8rem;
+  transition:all .2s ease;}
+.hist-item:hover{transform:translateX(4px);}
 .hist-item.neg{border-left-color:var(--red);}
 .hist-item.pos{border-left-color:var(--green);}
 .hist-item.net{border-left-color:var(--slate);}
@@ -194,8 +248,10 @@ html,body,.stApp,[data-testid="stAppViewContainer"],[data-testid="stMain"]{
 .contoh-btn{background:var(--bg3)!important;border:1px solid var(--border)!important;
   color:var(--muted)!important;border-radius:8px!important;font-size:.72rem!important;
   font-weight:500!important;padding:.35rem .65rem!important;
-  text-align:left!important;cursor:pointer!important;}
-.contoh-btn:hover{border-color:rgba(240,180,41,.3)!important;color:var(--gold)!important;}
+  text-align:left!important;cursor:pointer!important;
+  transition:all .2s ease!important;}
+.contoh-btn:hover{border-color:rgba(240,180,41,.3)!important;color:var(--gold)!important;
+  transform:translateX(4px)!important;}
 
 /* streamlit overrides */
 .stSelectbox>div>div{background:var(--bg2)!important;border-color:var(--border)!important;border-radius:8px!important;}
@@ -209,7 +265,7 @@ label{color:var(--muted)!important;font-size:.78rem!important;}
 
 
 # ══════════════════════════════════════════════════════
-# DATA PENELITIAN
+# DATA PENELITIAN (SESUAI GAMBAR)
 # ══════════════════════════════════════════════════════
 TOTAL = 2096; NEG = 1611; POS = 359; NET = 126
 P_NEG, P_POS, P_NET = 0.768496, 0.171241, 0.060263
@@ -217,26 +273,31 @@ TRAIN, TEST = 1676, 420
 AKU, PRE, REC, F1 = 78.57, 74.75, 78.57, 75.51
 CV = [78.33, 79.00, 77.33, 77.57, 79.47]; CV_M, CV_S = 78.34, 0.82
 CM_LABELS = ['Positif','Netral','Negatif']
-CM = [[29,3,12],[0,0,1],[4,2,2300]]
 
-# Data TF-IDF
+# Confusion Matrix sesuai gambar
+CM = [[29, 3, 12],   # Positif Aktual: 29 Positif, 3 Netral, 12 Negatif
+      [0, 0, 1],      # Netral Aktual: 0 Positif, 0 Netral, 1 Negatif
+      [4, 2, 2300]]   # Negatif Aktual: 4 Positif, 2 Netral, 2300 Negatif
+
+# Data Split Distribusi (sesuai gambar split_data_distribusi.png)
+SPLIT_DATA = {
+    'Negatif': {'train': 1288, 'test': 323, 'total': NEG},
+    'Positif': {'train': 287, 'test': 72, 'total': POS},
+    'Netral': {'train': 101, 'test': 25, 'total': NET}
+}
+
+# Data TF-IDF (sesuai gambar top_tfidf.png)
 TFIDF = {
-    'pajak':0.041,'tahun':0.031,'aktivasi':0.031,'akun':0.028,
-    'wajib':0.025,'wajib pajak':0.024,'nomor':0.023,'akun coretax':0.022,
-    'kak':0.022,'surat':0.021,'pemberitahuan':0.020,'surat pemberitahuan':0.020,
-    'pemberitahuan tahun':0.020,'lapor':0.020,'aktivasi akun':0.020,
-    'aktivasi coretax':0.017,'pokok':0.017,'pokok wajib':0.017,
-    'nomor pokok':0.017,'email':0.016,'kakak':0.015,
-    'daftar':0.015,'data':0.015,'min':0.015,'jenderal':0.015,
+    'pajak':0.038,'tahun':0.029,'aktivasi':0.028,'akun':0.024,
+    'wajib':0.022,'wajib pajak':0.020,'nomor':0.019,'akun coretax':0.018,
+    'kak':0.017,'surat':0.016,'pemberitahuan':0.015,'surat pemberitahuan':0.014,
+    'pemberitahuan tahun':0.013,'lapor':0.012,'aktivasi akun':0.011,
+    'aktivasi coretax':0.010,'pokok':0.009,'pokok wajib':0.008,
+    'nomor pokok':0.007,'email':0.006,'kakak':0.005,
+    'daftar':0.004,'data':0.003,'min':0.002,'jenderal':0.001,
 }
 
 # Data probabilitas kata per kelas (likelihood)
-KATA_PENTING = [
-    'error', 'lancar', 'login', 'berhasil', 'lambat', 'mudah', 
-    'aktivasi', 'akun', 'wajib', 'pajak', 'tahun', 'nomor',
-    'surat', 'lapor', 'gagal', 'down', 'cepat', 'sulit', 'ribet', 'mudah'
-]
-
 PROB_KATA = {
     'error': {'Negatif': 0.085, 'Positif': 0.002, 'Netral': 0.005},
     'lancar': {'Negatif': 0.001, 'Positif': 0.042, 'Netral': 0.003},
@@ -414,7 +475,6 @@ if "input_val" not in st.session_state:
 # FUNGSI VISUALISASI MODEL NAIVE BAYES
 # ══════════════════════════════════════════════════════
 def plot_probability_heatmap():
-    """Heatmap probabilitas kata per kelas"""
     df = pd.DataFrame(PROB_KATA).T
     fig = px.imshow(df.T, 
                     text_auto='.3f',
@@ -425,7 +485,6 @@ def plot_probability_heatmap():
     return fig
 
 def plot_feature_importance():
-    """Bar chart pentingnya fitur berdasarkan TF-IDF"""
     df = pd.DataFrame(list(TFIDF.items()), columns=['Fitur', 'Bobot'])
     df = df.sort_values('Bobot', ascending=True).tail(20)
     
@@ -445,7 +504,6 @@ def plot_feature_importance():
     return fig
 
 def plot_class_comparison():
-    """Bar chart perbandingan probabilitas antar kelas untuk kata-kata penting"""
     kata_komparasi = ['error', 'lancar', 'gagal', 'berhasil', 'lambat', 'cepat', 'ribet', 'mudah']
     fig = go.Figure()
     for kelas in ['Negatif', 'Positif', 'Netral']:
@@ -463,7 +521,6 @@ def plot_class_comparison():
     return fig
 
 def plot_prior_distribution():
-    """Pie chart distribusi prior"""
     fig = go.Figure(go.Pie(
         labels=['Negatif', 'Positif', 'Netral'],
         values=[P_NEG, P_POS, P_NET],
@@ -477,7 +534,6 @@ def plot_prior_distribution():
     return fig
 
 def plot_radar_comparison():
-    """Radar chart perbandingan karakteristik kelas"""
     categories = ['error', 'lambat', 'gagal', 'lancar', 'berhasil', 'cepat', 'mudah']
     
     fig = go.Figure()
@@ -520,7 +576,6 @@ def plot_radar_comparison():
     return fig
 
 def export_model_to_json():
-    """Membuat representasi model Naive Bayes dalam format JSON"""
     model_data = {
         "metadata": {
             "nama_model": "Categorical Naive Bayes - Coretax Sentiment Analysis",
@@ -535,6 +590,7 @@ def export_model_to_json():
             "total_data": TOTAL,
             "data_training": TRAIN,
             "data_testing": TEST,
+            "split_data": SPLIT_DATA,
             "periode_awal": "2024-12-15",
             "periode_akhir": "2025-01-27",
             "distribusi_label": {
@@ -569,16 +625,6 @@ def export_model_to_json():
             "size": 2500,
             "top_features": list(TFIDF.keys())[:20]
         },
-        "feature_importance": [
-            {
-                "fitur": kata,
-                "bobot_tfidf": TFIDF.get(kata, 0),
-                "p_negatif": PROB_KATA.get(kata, {}).get('Negatif', 0),
-                "p_positif": PROB_KATA.get(kata, {}).get('Positif', 0),
-                "p_netral": PROB_KATA.get(kata, {}).get('Netral', 0)
-            }
-            for kata in list(TFIDF.keys())[:30]
-        ],
         "preprocessing_info": {
             "normalisasi_kata": len(NORMALISASI),
             "stopwords": len(STOPWORDS),
@@ -637,9 +683,10 @@ st.markdown(f"""
 # ══════════════════════════════════════════════════════
 # TABS
 # ══════════════════════════════════════════════════════
-t1, t2, t3, t4, t5, t6, t7 = st.tabs([
+t1, t2, t3, t4, t5, t6, t7, t8 = st.tabs([
     "📊 Distribusi",
     "📈 Evaluasi Model",
+    "📦 Split Data",
     "🔬 Visualisasi Model NB",
     "💬 Ulasan Publik",
     "🔄 Preprocessing",
@@ -718,7 +765,7 @@ with t1:
     with i2:
         st.markdown(f'<div class="ins"><div class="ins-lbl">Sentimen Positif</div><div class="ins-val">{POS/TOTAL*100:.1f}%</div><div class="ins-desc">Puas dengan kemudahan lapor SPT dan inovasi DJP.</div></div>', unsafe_allow_html=True)
     with i3:
-        st.markdown(f'<div class="ins"><div class="ins-lbl">Fitur TF-IDF #1</div><div class="ins-val">pajak</div><div class="ins-desc">Bobot 0.041, diikuti <em>tahun</em> (0.031) dan <em>aktivasi</em> (0.031).</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="ins"><div class="ins-lbl">Fitur TF-IDF #1</div><div class="ins-val">pajak</div><div class="ins-desc">Bobot 0.038, diikuti <em>tahun</em> (0.029) dan <em>aktivasi</em> (0.028).</div></div>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
 
@@ -822,9 +869,125 @@ with t2:
 
 
 # ──────────────────────────────────────────────────────
-# TAB 3 — VISUALISASI MODEL NAIVE BAYES
+# TAB 3 — SPLIT DATA (BARU)
 # ──────────────────────────────────────────────────────
 with t3:
+    st.markdown('<div class="pw">', unsafe_allow_html=True)
+    
+    st.markdown('<div class="ctitle">📦 Split Data Training & Testing</div><div class="cline"></div>', unsafe_allow_html=True)
+    st.markdown('<div class="csub">Distribusi data training (80%) dan testing (20%) per kelas sentimen</div>', unsafe_allow_html=True)
+    
+    # Card Split Data
+    col_s1, col_s2, col_s3 = st.columns(3, gap="medium")
+    
+    for col, kelas, warna, data in zip([col_s1, col_s2, col_s3], 
+                                        ['Negatif', 'Positif', 'Netral'],
+                                        ['#EF4444', '#22C55E', '#94A3B8'],
+                                        [SPLIT_DATA['Negatif'], SPLIT_DATA['Positif'], SPLIT_DATA['Netral']]):
+        with col:
+            train_pct = (data['train'] / data['total']) * 100
+            test_pct = (data['test'] / data['total']) * 100
+            
+            st.markdown(f"""
+            <div class="split-card">
+                <div class="split-header">
+                    <span class="split-badge" style="background:{warna}22;color:{warna}">{kelas}</span>
+                    <span class="split-number">{data['total']}</span>
+                </div>
+                <div class="split-label">Total {kelas}</div>
+                <div style="margin: .5rem 0">
+                    <div style="display:flex;justify-content:space-between;font-size:.7rem;margin-bottom:.2rem">
+                        <span style="color:var(--teal)">📊 Training (80%)</span>
+                        <span style="font-family:'JetBrains Mono',monospace">{data['train']} tweet ({train_pct:.0f}%)</span>
+                    </div>
+                    <div class="split-progress">
+                        <div class="split-progress-fill" style="width:{train_pct}%;background:var(--teal)"></div>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;font-size:.7rem;margin-bottom:.2rem;margin-top:.5rem">
+                        <span style="color:var(--muted)">🧪 Testing (20%)</span>
+                        <span style="font-family:'JetBrains Mono',monospace">{data['test']} tweet ({test_pct:.0f}%)</span>
+                    </div>
+                    <div class="split-progress">
+                        <div class="split-progress-fill" style="width:{test_pct}%;background:var(--muted)"></div>
+                    </div>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.5rem;padding-top:.5rem;border-top:1px solid var(--border)">
+                    <span style="font-size:.65rem;color:var(--slate)">Training</span>
+                    <span style="font-size:.65rem;color:var(--slate)">Testing</span>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+    
+    # Ringkasan Split Data
+    st.markdown('<div class="card" style="margin-top:1rem">', unsafe_allow_html=True)
+    st.markdown('<div class="ctitle">📋 Ringkasan Split Data</div><div class="cline"></div>', unsafe_allow_html=True)
+    
+    split_df = pd.DataFrame({
+        'Kelas': ['Negatif', 'Positif', 'Netral', 'Total'],
+        'Training': [SPLIT_DATA['Negatif']['train'], SPLIT_DATA['Positif']['train'], SPLIT_DATA['Netral']['train'], TRAIN],
+        'Testing': [SPLIT_DATA['Negatif']['test'], SPLIT_DATA['Positif']['test'], SPLIT_DATA['Netral']['test'], TEST],
+        'Total': [NEG, POS, NET, TOTAL],
+        'Persentase Training': ['76.9%', '17.1%', '6.0%', '80%'],
+        'Persentase Testing': ['76.9%', '17.1%', '6.0%', '20%']
+    })
+    
+    st.dataframe(
+        split_df,
+        column_config={
+            "Kelas": "Kelas Sentimen",
+            "Training": st.column_config.NumberColumn("Training (80%)", format="%d"),
+            "Testing": st.column_config.NumberColumn("Testing (20%)", format="%d"),
+            "Total": st.column_config.NumberColumn("Total", format="%d"),
+            "Persentase Training": "Proporsi Training",
+            "Persentase Testing": "Proporsi Testing"
+        },
+        use_container_width=True,
+        hide_index=True,
+    )
+    
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Visualisasi perbandingan Training vs Testing
+    st.markdown('<div class="card" style="margin-top:1rem">', unsafe_allow_html=True)
+    st.markdown('<div class="ctitle">📊 Perbandingan Training vs Testing per Kelas</div><div class="cline"></div>', unsafe_allow_html=True)
+    
+    fig_split = go.Figure()
+    fig_split.add_trace(go.Bar(
+        name='Training (80%)',
+        x=['Negatif', 'Positif', 'Netral'],
+        y=[SPLIT_DATA['Negatif']['train'], SPLIT_DATA['Positif']['train'], SPLIT_DATA['Netral']['train']],
+        marker_color='#2DD4BF',
+        text=[f'{SPLIT_DATA["Negatif"]["train"]}', f'{SPLIT_DATA["Positif"]["train"]}', f'{SPLIT_DATA["Netral"]["train"]}'],
+        textposition='outside',
+        textfont=dict(size=11, color='#2DD4BF', family='JetBrains Mono')
+    ))
+    fig_split.add_trace(go.Bar(
+        name='Testing (20%)',
+        x=['Negatif', 'Positif', 'Netral'],
+        y=[SPLIT_DATA['Negatif']['test'], SPLIT_DATA['Positif']['test'], SPLIT_DATA['Netral']['test']],
+        marker_color='#64748B',
+        text=[f'{SPLIT_DATA["Negatif"]["test"]}', f'{SPLIT_DATA["Positif"]["test"]}', f'{SPLIT_DATA["Netral"]["test"]}'],
+        textposition='outside',
+        textfont=dict(size=11, color='#94A3B8', family='JetBrains Mono')
+    ))
+    fig_split.update_layout(
+        **PT, height=350,
+        barmode='group',
+        margin=dict(l=6,r=6,t=20,b=30),
+        xaxis=dict(title='Kelas Sentimen', tickfont=dict(size=11)),
+        yaxis=dict(title='Jumlah Tweet', showgrid=True, gridcolor='rgba(255,255,255,.05)'),
+        legend=dict(orientation='h', y=1.05, x=0.5, xanchor='center')
+    )
+    st.plotly_chart(fig_split, use_container_width=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    st.markdown('</div>', unsafe_allow_html=True)
+
+
+# ──────────────────────────────────────────────────────
+# TAB 4 — VISUALISASI MODEL NAIVE BAYES
+# ──────────────────────────────────────────────────────
+with t4:
     st.markdown('<div class="pw">', unsafe_allow_html=True)
     
     st.markdown('<div class="ctitle">🔬 Visualisasi Model Naive Bayes</div><div class="cline"></div>', unsafe_allow_html=True)
@@ -896,6 +1059,7 @@ with t3:
             <strong>📋 Isi Model JSON:</strong><br>
             • Metadata penelitian<br>
             • Probabilitas prior P(Vj)<br>
+            • Split data training/testing<br>
             • Likelihood P(kata|kelas) untuk 20+ kata penting<br>
             • Bobot TF-IDF untuk 25 fitur teratas<br>
             • Confusion matrix dan metrik evaluasi
@@ -907,9 +1071,9 @@ with t3:
 
 
 # ──────────────────────────────────────────────────────
-# TAB 4 — ULASAN PUBLIK
+# TAB 5 — ULASAN PUBLIK
 # ──────────────────────────────────────────────────────
-with t4:
+with t5:
     st.markdown('<div class="pw">', unsafe_allow_html=True)
     st.markdown('<p style="font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.15rem">Ulasan Masyarakat tentang Coretax</p><div class="cline"></div>', unsafe_allow_html=True)
     st.markdown('<p style="font-size:.72rem;color:var(--slate);margin-bottom:1rem">Sampel tweet dari Platform X yang telah dianalisis menggunakan Categorical Naïve Bayes</p>', unsafe_allow_html=True)
@@ -927,9 +1091,9 @@ with t4:
 
 
 # ──────────────────────────────────────────────────────
-# TAB 5 — PREPROCESSING
+# TAB 6 — PREPROCESSING
 # ──────────────────────────────────────────────────────
-with t5:
+with t6:
     st.markdown('<div class="pw">', unsafe_allow_html=True)
     pp1,pp2 = st.columns([1,1.2],gap="large")
     with pp1:
@@ -970,9 +1134,9 @@ with t5:
 
 
 # ──────────────────────────────────────────────────────
-# TAB 6 — RINGKASAN
+# TAB 7 — RINGKASAN
 # ──────────────────────────────────────────────────────
-with t6:
+with t7:
     st.markdown('<div class="pw">', unsafe_allow_html=True)
     rs1,rs2 = st.columns([1.1,1],gap="large")
     with rs1:
@@ -1009,9 +1173,9 @@ with t6:
 
 
 # ──────────────────────────────────────────────────────
-# TAB 7 — UJI PREDIKSI (DIPERBAIKI)
+# TAB 8 — UJI PREDIKSI
 # ──────────────────────────────────────────────────────
-with t7:
+with t8:
     st.markdown('<div class="pw">', unsafe_allow_html=True)
 
     col_kiri, col_kanan = st.columns([1.2, 1], gap="large")
@@ -1094,7 +1258,6 @@ with t7:
                     "Netral":  "Bersifat <strong>netral</strong> — pertanyaan, informasi umum, atau tidak mengandung opini yang jelas.",
                 }
 
-                # PERBAIKAN: HTML probability bars dengan struktur yang rapi
                 bars_html = ""
                 for lbl_p in ["Negatif", "Positif", "Netral"]:
                     pct = proba[lbl_p] * 100
@@ -1171,7 +1334,6 @@ with t7:
 </div>
 """, unsafe_allow_html=True)
 
-                # Simpan riwayat
                 st.session_state.riwayat.insert(0, {
                     "teks":  teks_input.strip()[:100],
                     "label": label,
@@ -1276,6 +1438,6 @@ st.markdown(f"""
   Peneliti: <b>Aziz Fakhrizi</b> (NIM: 2022020255) · {TOTAL:,} tweet ·
   Categorical Naïve Bayes · InSet Lexicon<br>
   Akurasi: <b>{AKU}%</b> · CV 5-Fold: <b>{CV_M:.2f}% ± {CV_S:.2f}%</b> ·
-  15 Des 2024 – 27 Jan 2025
+  Split Data: <b>80% Training / 20% Testing</b> · 15 Des 2024 – 27 Jan 2025
 </div>
 """, unsafe_allow_html=True)
